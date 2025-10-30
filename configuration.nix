@@ -25,7 +25,12 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openvpn 
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "Australia/Tasmania";
@@ -61,6 +66,7 @@
 
   #bluetooth
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
   
   #distrobox
   virtualisation.docker = {
@@ -77,7 +83,6 @@
       stdenv.cc.cc
       curl
       openssl
-
       libGL
     ];
   };
@@ -89,6 +94,9 @@
   };
   
   hardware.xpadneo.enable = true;
+
+  #piper and ratbag
+  services.ratbagd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -102,7 +110,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+#jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -116,7 +124,7 @@
   users.users.insanityvoid = {
     isNormalUser = true;
     description = "InsanityVoid";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -125,6 +133,15 @@
 
   # Install firefox.
   #programs.firefox.enable = true;
+  
+  programs.light.enable = true;
+
+  # install niri
+  programs.niri.enable = true;
+  programs.waybar.enable = true;
+  security.polkit.enable = true; # polkit
+  services.gnome.gnome-keyring.enable = true; # secret service
+  systemd.services.waybar.enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -132,7 +149,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     librewolf
     thunderbird
@@ -166,6 +183,14 @@
     kdePackages.qtstyleplugin-kvantum
     neocities
     github-desktop
+    fuzzel
+    swaylock
+    mako
+    nerd-fonts.roboto-mono
+    xwayland-satellite
+    swww
+    piper
+    networkmanagerapplet
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
