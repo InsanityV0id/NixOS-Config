@@ -35,6 +35,13 @@
   # Set your time zone.
   time.timeZone = "Australia/Tasmania";
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-color-emoji
+    nerd-fonts.roboto-mono
+ ];
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.UTF-8";
 
@@ -55,8 +62,9 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.defaultSession = "niri";
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -126,7 +134,6 @@
     description = "InsanityVoid";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     packages = with pkgs; [
-      kdePackages.kate
     #  thunderbird
     ];
   };
@@ -186,11 +193,12 @@
     fuzzel
     swaylock
     mako
-    nerd-fonts.roboto-mono
     xwayland-satellite
     swww
     piper
     networkmanagerapplet
+    kdePackages.dolphin
+    kdePackages.ark
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
