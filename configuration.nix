@@ -199,7 +199,11 @@
     networkmanagerapplet
     kdePackages.dolphin
     kdePackages.ark
-];
+    xviewer
+    mint-cursor-themes
+    python313Packages.tubeup
+    alvr
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

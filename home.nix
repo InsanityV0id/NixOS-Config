@@ -10,4 +10,18 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "25.11";
+
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.mint-cursor-themes;
+    name = "Bibata-Modern-Ice";
+    gtk.enable = true;
+  };
+
+  programs.bash.shellAliases = {
+    rebuild = "sudo nixos-rebuild switch";
+    updateflake = "cd /etc/nixos/ && sudo nix flake update";
+    vim = "nvim";
+    svim = "sudo nvim";
+  };
 }
