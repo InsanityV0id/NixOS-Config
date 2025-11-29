@@ -203,6 +203,8 @@
     mint-cursor-themes
     python313Packages.tubeup
     alvr
+    p7zip
+    wlogout
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
