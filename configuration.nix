@@ -76,6 +76,9 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   
+  #flatpak
+  services.flatpak.enable = true;
+
   #distrobox
   virtualisation.docker = {
     enable = true;
@@ -92,6 +95,34 @@
       curl
       openssl
       libGL
+      attr
+      libssh
+      bzip2
+      libxml2
+      acl
+      libsodium
+      util-linux
+      xz
+      systemd
+            
+      xorg.libXinerama
+      xorg.libXcursor
+      xorg.libXrender
+      xorg.libXScrnSaver
+      xorg.libXi
+      xorg.libSM
+      xorg.libICE
+      xorg.libX11
+      gnome2.GConf
+      nspr
+      nss
+      cups
+      libcap
+      SDL2
+      libusb1
+      dbus-glib
+      ffmpeg
+      fontconfig.lib
     ];
   };
 
@@ -149,6 +180,11 @@
   security.polkit.enable = true; # polkit
   services.gnome.gnome-keyring.enable = true; # secret service
   systemd.services.waybar.enable = false;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  };
+  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -205,6 +241,7 @@
     alvr
     p7zip
     wlogout
+    obs-studio
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
