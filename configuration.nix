@@ -134,6 +134,9 @@
   
   hardware.xpadneo.enable = true;
 
+  # udiskie setup
+  services.udisks2.enable = true;
+
   #piper and ratbag
   services.ratbagd.enable = true;
 
