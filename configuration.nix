@@ -245,6 +245,11 @@
     p7zip
     wlogout
     obs-studio
+    uzdoom
+    prismlauncher
+    dosbox
+    mc
+    mindustry
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
