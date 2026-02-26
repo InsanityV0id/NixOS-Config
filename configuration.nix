@@ -134,6 +134,11 @@
   
   hardware.xpadneo.enable = true;
 
+  # making haxe work
+  nixpkgs.config.permittedInsecurePackages = [
+    "mbedtls-2.28.10"
+  ];
+
   # udiskie setup
   services.udisks2.enable = true;
 
@@ -221,7 +226,6 @@
     kdePackages.kdenlive
     gdevelop
     distrobox
-    blender
     zoom-us
     gearlever
     lynx
@@ -250,6 +254,15 @@
     dosbox
     mc
     mindustry
+    slade
+    zdbsp
+    vscodium
+    haxe
+    aseprite
+    zandronum
+    mc
+    eduke32
+    calibre
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

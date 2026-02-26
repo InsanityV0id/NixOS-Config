@@ -14,6 +14,7 @@
   services.flatpak.packages = [
     "com.usebottles.bottles"
     "org.taisei_project.Taisei"
+    "org.vinegarhq.Sober"
   ];
 
 }
