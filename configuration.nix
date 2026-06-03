@@ -105,14 +105,6 @@
       xz
       systemd
             
-      xorg.libXinerama
-      xorg.libXcursor
-      xorg.libXrender
-      xorg.libXScrnSaver
-      xorg.libXi
-      xorg.libSM
-      xorg.libICE
-      xorg.libX11
       gnome2.GConf
       nspr
       nss
@@ -134,10 +126,6 @@
   
   hardware.xpadneo.enable = true;
 
-  # making haxe work
-  nixpkgs.config.permittedInsecurePackages = [
-    "mbedtls-2.28.10"
-  ];
 
   # udiskie setup
   services.udisks2.enable = true;
@@ -180,7 +168,6 @@
   # Install firefox.
   #programs.firefox.enable = true;
   
-  programs.light.enable = true;
 
   # install niri
   programs.niri.enable = true;
@@ -212,9 +199,7 @@
     neovim
     thunderbird
     krita
-    winetricks
     geany
-    wineWowPackages.full
     hunspellDicts.en_AU-large
     vlc
     flameshot
@@ -237,7 +222,7 @@
     swaylock
     mako
     xwayland-satellite
-    swww
+    awww
     piper
     networkmanagerapplet
     kdePackages.dolphin
@@ -257,12 +242,15 @@
     slade
     zdbsp
     vscodium
-    haxe
     aseprite
     zandronum
     mc
     eduke32
     calibre
+    gcc
+    audacity
+    brightnessctl
+    fontconfig
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
