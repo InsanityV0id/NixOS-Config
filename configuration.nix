@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
@@ -40,6 +40,8 @@
     noto-fonts
     noto-fonts-color-emoji
     nerd-fonts.roboto-mono
+    nerd-fonts.ubuntu
+    libertine
  ];
 
   # Select internationalisation properties.
@@ -72,6 +74,13 @@
     variant = "";
   };
 
+  #OpenTabletDriver
+  hardware.opentabletdriver.enable = true;
+
+  #OpenTabletDriver Part 2 (uinput)
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
+  
   #bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -198,7 +207,6 @@
     yt-dlp
     neovim
     thunderbird
-    krita
     geany
     hunspellDicts.en_AU-large
     vlc
