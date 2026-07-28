@@ -24,7 +24,7 @@
     vim = "nvim";
     svim = "sudo nvim";
   };
-  
+
   services.udiskie = {
     enable = true;
     settings = {

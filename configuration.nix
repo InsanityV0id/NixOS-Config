@@ -88,6 +88,10 @@
   #flatpak
   services.flatpak.enable = true;
 
+  #waydroid
+  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.package = pkgs.waydroid-nftables;
+
   #distrobox
   virtualisation.docker = {
     enable = true;
