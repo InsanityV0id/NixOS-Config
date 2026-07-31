@@ -5,13 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nixvim.url = "github:nix-community/nixvim";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nix-flatpak }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nix-flatpak, nixvim }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       # ...
       system = "x86_64-linux";
@@ -21,10 +22,12 @@
 	./flatpak.nix
 	nix-flatpak.nixosModules.nix-flatpak
         nixos-hardware.nixosModules.lenovo-thinkpad-p51
+
 	home-manager.nixosModules.home-manager
 	{
 	  home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
+	  home-manager.extraSpecialArgs = { inherit nixvim; };
 	  home-manager.users.insanityvoid = ./home.nix;
 	  home-manager.backupFileExtension = "backup";
         }
