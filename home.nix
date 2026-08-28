@@ -22,11 +22,15 @@
     gtk.enable = true;
   };
 
-  programs.bash.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch";
-    updateflake = "cd /etc/nixos/ && sudo nix flake update";
-    vim = "nvim";
-    svim = "sudo nvim";
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      rebuild = "sudo nixos-rebuild switch";
+      updateflake = "cd /etc/nixos/ && sudo nix flake update";
+      editnixconf = "sudo nvim /etc/nixos";
+      vim = "nvim";
+      svim = "sudo nvim";
+    };
   };
 
   programs.nixvim = {
@@ -39,6 +43,9 @@
       treesitter = {
         enable = true;
 	highlight.enable = true;
+      };
+      nvim-tree = {
+        enable = true;
       };
     };
     lsp = {
@@ -55,8 +62,42 @@
 	    ];
 	  };
         };
+	ccls = {
+	  enable = true;
+	  config = {
+	    cmd = [
+	      "ccls"
+	    ];
+	    filetypes = [
+	      "c"
+	      "cpp"
+	    ];
+	    root_markers = [
+	      "compile_commands.json"
+	      ".ccls"
+	      ".git"
+	    ];
+	  };
+	};
+	pyright = {
+	  enable = true;
+	  config = {
+	    cmd = [
+	      "pyright-langserver"
+	      "--stdio"
+	    ];
+	    filetypes = [
+	      "python"
+	    ];
+	    root_markers = [
+	      "pyrightconfig.json"
+	    ];
+	  };
+	};
       };
     };
+    extraConfigLua = "vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1";
   };
 
   services.udiskie = {

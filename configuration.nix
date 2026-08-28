@@ -65,7 +65,9 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.defaultSession = "niri";
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+  };
   #services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -96,40 +98,10 @@
   virtualisation.docker = {
     enable = true;
   };
-  
-  #nix-ld
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      #put libaries here
-      zlib
-      zstd
-      stdenv.cc.cc
-      curl
-      openssl
-      libGL
-      attr
-      libssh
-      bzip2
-      libxml2
-      acl
-      libsodium
-      util-linux
-      xz
-      systemd
-            
-      gnome2.GConf
-      nspr
-      nss
-      cups
-      libcap
-      SDL2
-      libusb1
-      dbus-glib
-      ffmpeg
-      fontconfig.lib
-    ];
-  };
+ 
+  # virtualisation
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   programs.steam = {
     enable = true;
@@ -142,6 +114,9 @@
 
   # udiskie setup
   services.udisks2.enable = true;
+
+  # cdemu
+  programs.cdemu.enable = true;
 
   #piper and ratbag
   services.ratbagd.enable = true;
@@ -172,7 +147,7 @@
   users.users.insanityvoid = {
     isNormalUser = true;
     description = "InsanityVoid";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "libvirtd" "cdrom" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -210,7 +185,6 @@
     libreoffice
     yt-dlp
     neovim
-    thunderbird
     geany
     hunspellDicts.en_AU-large
     vlc
@@ -221,15 +195,10 @@
     appimage-run
     htop
     kdePackages.kdenlive
-    gdevelop
     distrobox
     zoom-us
-    gearlever
-    lynx
     git
-    kdePackages.qtstyleplugin-kvantum
     neocities
-    github-desktop
     fuzzel
     swaylock
     mako
@@ -242,24 +211,15 @@
     xviewer
     mint-cursor-themes
     python313Packages.tubeup
-    alvr
     p7zip
-    wlogout
     obs-studio
     uzdoom
     prismlauncher
     dosbox
-    mc
-    mindustry
-    slade
-    zdbsp
-    vscodium
     aseprite
     zandronum
     mc
-    eduke32
     calibre
-    gcc
     audacity
     brightnessctl
     fontconfig

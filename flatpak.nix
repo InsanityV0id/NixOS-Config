@@ -8,12 +8,11 @@
   }];
 
   services.flatpak.update.auto.enable = false;
-  services.flatpak.uninstallUnmanaged = false;
+  services.flatpak.uninstallUnmanaged = true;
 
   # Add here the flatpaks you want to install
   services.flatpak.packages = [
     "com.usebottles.bottles"
-    "org.taisei_project.Taisei"
     "org.vinegarhq.Sober"
   ];
 
