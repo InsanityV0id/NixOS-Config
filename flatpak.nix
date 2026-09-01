@@ -14,6 +14,7 @@
   services.flatpak.packages = [
     "com.usebottles.bottles"
     "org.vinegarhq.Sober"
+    "com.github.tchx84.Flatseal"
   ];
 
 }

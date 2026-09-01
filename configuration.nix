@@ -100,7 +100,10 @@
   };
  
   # virtualisation
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+  };
   programs.virt-manager.enable = true;
 
   programs.steam = {
@@ -147,7 +150,7 @@
   users.users.insanityvoid = {
     isNormalUser = true;
     description = "InsanityVoid";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "libvirtd" "cdrom" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "libvirtd" "cdrom" "bumblebee" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -155,7 +158,12 @@
 
   # Install firefox.
   #programs.firefox.enable = true;
-  
+
+  # bumblebee
+  hardware.bumblebee.enable = true;
+  nixpkgs.config.problems.handlers = {
+    nvidia-x11.broken = "warn";
+  };
 
   # install niri
   programs.niri.enable = true;
@@ -171,6 +179,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -223,6 +232,7 @@
     audacity
     brightnessctl
     fontconfig
+    primus
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
